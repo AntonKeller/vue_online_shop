@@ -13,7 +13,7 @@
         </p>
         <button
                 class="v-catalog-item__add btn"
-                @click.left="sendDataToParent"
+                @click.left="addToCart"
         >
             Add item to cart
         </button>
@@ -32,13 +32,13 @@
                 }
             }
         },
-        data(){
+        data() {
             return {}
         },
         methods: {
-            sendDataToParent(){
-                this.$emit('sendArticle', this.product_data.article)
-            },
+            addToCart() {
+                this.$emit('addToCart', this.product_data)
+            }
         },
     }
 </script>
@@ -62,6 +62,7 @@
         border: 1px solid #e8e8e8;
         border-radius: 2rem;
         transition: 0.3s linear;
+
         &:hover {
             width: 150px;
         }

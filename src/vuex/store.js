@@ -1,33 +1,14 @@
-import {createStore} from 'vuex'
-import axios from "axios";
-
-const url = 'http://localhost:3000/products'
+import {createStore} from 'vuex';
+import storeMutations from "@/vuex/store-mutations";
+import storeActions from "@/vuex/store-actions";
+import storeGetters from "@/vuex/store-getters";
+import storeState from "@/vuex/store-state";
 
 let store = new createStore({
-    state: {
-        products: [],
-    },
-    mutations: {
-        SET_PRODUCTS_TO_STATE: (state, products) => {
-            state.products = products
-        }
-    },
-    actions: {
-        GET_PRODUCTS_FROM_API: ({commit}) => {
-            return axios(url, {method: "GET"})
-                .then((res) => {
-                    commit('SET_PRODUCTS_TO_STATE', res.data);
-                    return res;
-                })
-                .catch(err => {
-                    console.log(err);
-                    return err;
-                })
-        }
-    },
-    getters: {
-        PRODUCTS: (state) => state.products,
-    },
+    state: storeState(),
+    mutations: storeMutations(),
+    actions: storeActions(),
+    getters: storeGetters(),
 });
 
 export default store;
